@@ -11,13 +11,7 @@ var browserSync = require('browser-sync').create();
 var babelify = require("babelify");
 var lib = require('bower-files')({
   "overrides":{
-    "bootstrap" : {
-      "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
-      ]
-    }
+
   }
 });
 
@@ -52,9 +46,13 @@ gulp.task('serve', function() {
 
   gulp.watch(['js/*.js'], ['jsBuild']);
   gulp.watch(['bower.json'], ['bowerBuild']);
-
+  gulp.watch(['index.html'], ['watch']);
+  gulp.watch(['css/master.css'], ['watch']);
 });
 
+gulp.task('watch', function(){
+  browserSync.reload();
+});
 gulp.task('bowerBuild', ['bower'], function(){
   browserSync.reload();
 });

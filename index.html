@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="build/css/vendor.css" rel="stylesheet" type="text/css">
+  <link href="css/master.css" rel="stylesheet" type="text/css">
   <script src="build/js/vendor.min.js"></script>
   <script type="text/javascript" src="build/js/app.js"></script>
   <title>Pandemic</title>
 </head>
 <body>
+  <div class="container">
 
+    <h1>Pandemic</h1>
+    <form class="start" action="index.html" method="post">
+      <label>How many players</label>
+      <input type="number" id="amount" max="4">
+      <button type="submit" name="button">Enter</button>
+    </form>
+    <div class="play">
+      <p id="timer"></p>
+      <ol id="scores">
+
+      </ol>
+      <button type="button" name="button" id="button">start</button>
+      <div id="output">
+
+      </div>
+      <div class="option-play">
+        <select id="select">
+
+        </select>
+        <button type="button" name="button" id="card">Play Card</button>
+      </div>
+      <img src="https://i.ytimg.com/vi/u0py1ECA2eM/maxresdefault.jpg" alt="The love of my life" width="300px" height="150px">
+    </div>
+  </div>
 </body>
 </html>

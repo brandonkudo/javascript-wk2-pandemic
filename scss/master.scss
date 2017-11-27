@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Freckle+Face');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(180deg,rgba(76, 128, 51, 1),rgba(133, 76, 56, 1));
+  height: 100vh;
+}
+
+h1 {
+  font-family: 'Freckle Face', cursive;
+  font-size: 80px;
+  padding: 20px;
+
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  button {
+    padding: 10px;
+    border-radius: 5px;
+    font-family: courier;
+  }
+}
+
+label {
+  margin-bottom: 10px;
+  font-family: courier;
+}
+
+input {
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: rgba(100,100,100,0.7);
+  width: 300px;
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Freckle Face', cursive;
+  color: white;
+}
+
+.play {
+  display: flex;
+  flex-direction: column;
+}
+
+#output {
+  margin-bottom: 10px;
+  font-size: 30px;
+  text-align: center;
+  font-family: courier;
+}
+
+#button {
+  padding: 10px;
+  border-radius: 5px;
+  font-family: courier;
+  margin-bottom: 10px;
+  width: 100px;
+}
+
+select {
+  width: 100px;
+  height: 50px;
+  background-color: rgba(100,100,100,0.7);
+  font-family: courier;
+  margin-bottom: 10px;
+}
+
+#card {
+  padding: 10px;
+  border-radius: 5px;
+  font-family: courier;
+  margin-bottom: 10px;
+  width: 100px;
+}
