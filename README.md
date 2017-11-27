@@ -1,4 +1,4 @@
-# Rename
+# Pandemic
 ##### by Adam Titus
 
 ### Description
