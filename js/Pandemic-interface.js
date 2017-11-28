@@ -1,7 +1,10 @@
 import { Player, Game } from "./../js/Pandemic.js";
 
 $(document).ready(function(){
+  const squishy = new Audio('/audio/Squishy.mp3');
+  const tada = new Audio('/audio/Tada.mp3');
   let counter = 0;
+  $("#win-screen").hide();
   $(".play").hide();
   $(".option-play").hide();
   const game = new Game();
@@ -39,12 +42,19 @@ $(document).ready(function(){
       document.getElementById("card").disabled = false;
       for (var i = 0; i < game.players.length; i++) {
         if(game.players[i].win) {
-          alert(`Player ${game.players[i].id} Wins`);
+          $(".instructions").hide();
+          $(".play").hide();
+          $("#win-screen").show();
+          $("#win").text(`Player ${game.players[i].id} Wins`);
+          tada.play();
           clearInterval(theinterval);
-          location.reload();
         }
         if(game.players[i].loss) {
-          alert(`Player ${game.players[i].id} is out`);
+          $(".loss").text(`Player ${game.players[i].id} Is Dead!!!`);
+          squishy.play();
+          setTimeout(() => {
+            $(".loss").empty();
+          }, 3000);
           game.players.splice(i, 1);
           if(game.turn >= game.players.length) {
             game.turn = 0;
@@ -52,9 +62,12 @@ $(document).ready(function(){
         }
       }
       if(game.players.length <= 1) {
-        alert(`Player ${game.players[0].id} Wins`);
+        $(".instructions").hide();
+        $(".play").hide();
+        $("#win-screen").show();
+        $("#win").text(`Player ${game.players[0].id} Wins`);
+        tada.play();
         clearInterval(theinterval);
-        location.reload();
       }
       if(counter >= 20){
         game.players[game.turn].turn = false;
@@ -69,6 +82,10 @@ $(document).ready(function(){
           game.players.forEach(function(player){
             $("#target").append(`<option>${player.id}</option>`);
           });
+          document.getElementById("card").disabled = true;
+          setTimeout(() => {
+            document.getElementById("card").disabled = false;
+          }, 1000);
         } else {
           game.turn++;
           counter = 0;
@@ -80,6 +97,10 @@ $(document).ready(function(){
           game.players.forEach(function(player){
             $("#target").append(`<option>${player.id}</option>`);
           });
+          document.getElementById("card").disabled = true;
+          setTimeout(() => {
+            document.getElementById("card").disabled = false;
+          }, 500);
         }
         game.players[game.turn].turn = true;
       }
@@ -118,5 +139,8 @@ $(document).ready(function(){
     });
     $("#output").text(`Player ${game.players[game.turn].id}'s Turn`);
     $("#timer").text(`Turn Over In ${20 - counter} Seconds`);
+  });
+  $("#restart").click(function(){
+    window.location.reload(true);
   });
 });

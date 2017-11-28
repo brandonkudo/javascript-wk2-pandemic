@@ -20,7 +20,7 @@ export class Player {
     this.cards = [];
     this.infection = 0;
     this.research = 0;
-    this.interval = 10000;
+    this.interval = 20000;
     this.increase = 10;
     this.loss = false;
     this.win = false;
@@ -45,10 +45,10 @@ export class Player {
         } else if (number <= 45) {
           //Decrease Research
           this.cards.push(cards[1]);
-        } else if (number <= 75) {
+        } else if (number <= 65) {
           //Increase Research
           this.cards.push(cards[3]);
-        } else if (number <= 12.5) {
+        } else if (number <= 82.5) {
           //Increase Infection
           this.cards.push(cards[4]);
         } else {
@@ -110,10 +110,16 @@ export class Player {
       this.cards.splice(cardToRemove, 1);
     } else if(card === "Decrease Research") {
       target.research -= 10;
+      if(target.research < 0) {
+        target.research = 0;
+      }
       let cardToRemove = this.cards.indexOf("Decrease Research");
       this.cards.splice(cardToRemove, 1);
     } else if(card === "Infection Strength Decrease") {
       this.increase -= 10;
+      if(this.increase < 0) {
+        this.increase = 0;
+      }
       let cardToRemove = this.cards.indexOf("Infection Strength Decrease");
       this.cards.splice(cardToRemove, 1);
     } else if(card === "Temporary Cure") {
@@ -130,6 +136,9 @@ export class Player {
       this.cards.splice(cardToRemove, 1);
     } else if(card === "Decrease Infection") {
       this.infection -= 10;
+      if(this.infection < 0) {
+        this.infection = 0;
+      }
       let cardToRemove = this.cards.indexOf("Decrease Infection");
       this.cards.splice(cardToRemove, 1);
     }

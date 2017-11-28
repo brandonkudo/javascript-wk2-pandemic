@@ -35,7 +35,12 @@
         </select>
         <button type="button" name="button" id="card" disabled>Play Card</button>
       </div>
+      <p class="loss"></p>
 
+    </div>
+    <div id="win-screen">
+      <p id="win"></p>
+      <button type="button" id="restart" name="button">Play Again?</button>
     </div>
     <div class="instructions">
       <div class="directions">
@@ -43,7 +48,8 @@
         <p>2-4 players play cards to either find a cure or sabotage others.</p><br>
         <p>Increase your research your research to find a cure, and decrease your infection to stay alive.</p><br>
         <p>Decrease others research while increasing their infection to try and kill them faster.</p><br>
-        <p>Each turn is 20 seconds and after every 10 seconds everyone's infection increases by their current infection rate.</p><br>
+        <p>Each turn is 20 seconds and after 20 seconds everyone's infection increases by their current infection rate.</p><br>
+        <p>If you play a card your turn is over, but the infection timer is not affected.</p><br>
         <p>To win you must get 100 or more research, or be the last one <span id="alive">alive.</span></p><br>
         <p>If you reach 100 infection or more, you will <span id="die">die.</span></p><br>
       </div>
@@ -63,13 +69,11 @@
         <li>Decrease Infection:
           <ul>
             <li>Decrease your current infection by 10.</li>
-            <li>You can go negative but this does not count as a cure.</li>
           </ul>
         </li>
         <li>Decrease Research:
           <ul>
             <li>Decrease your target's research by 10.</li>
-            <li>You can go negative.</li>
           </ul>
         </li>
         <li>Infection Strength Increase:
@@ -80,13 +84,11 @@
         <li>Infection Strength Decrease:
           <ul>
             <li>Decrease your rate of infection per turn by 10.</li>
-            <li>You can go negative but this does not count as a cure.</li>
           </ul>
         </li>
         <li>Reset Infection:
           <ul>
             <li>Reset rate of infection on target back to 10.</li>
-            <li>You can target yourself.</li>
           </ul>
         </li>
         <li>Temporary Cure:

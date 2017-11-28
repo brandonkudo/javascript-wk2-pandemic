@@ -30,6 +30,13 @@ form {
     background-color: #adabab;
     border-radius: 0;
     border: none; }
+    form button:hover {
+      background-color: white;
+      cursor: pointer; }
+    form button:focus {
+      box-shadow: none; }
+    form button:active {
+      box-shadow: none; }
 
 label {
   margin-bottom: 10px; }
@@ -44,6 +51,10 @@ input {
   text-align: center;
   font-size: 20px;
   color: white; }
+  input:focus {
+    box-shadow: none; }
+  input:active {
+    box-shadow: none; }
 
 .play {
   display: flex;
@@ -59,11 +70,20 @@ input {
   color: white; }
 
 #button {
-  padding: 15px;
+  padding: 25px;
+  font-size: 25px;
+  text-transform: uppercase;
   color: #303030;
   background-color: #adabab;
   border-radius: 0;
   border: none; }
+  #button:hover {
+    background-color: white;
+    cursor: pointer; }
+  #button:focus {
+    box-shadow: none; }
+  #button:active {
+    box-shadow: none; }
 
 select {
   width: 100px;
@@ -72,6 +92,13 @@ select {
   background-color: #adabab;
   margin-bottom: 10px;
   border-radius: 0; }
+  select:hover {
+    cursor: pointer;
+    background-color: white; }
+  select:focus {
+    box-shadow: none; }
+  select:active {
+    box-shadow: none; }
 
 #select {
   width: 400px; }
@@ -82,6 +109,13 @@ select {
   background-color: #adabab;
   border-radius: 0;
   border: none; }
+  #card:hover {
+    background-color: white;
+    cursor: pointer; }
+  #card:focus {
+    box-shadow: none; }
+  #card:active {
+    box-shadow: none; }
 
 .instructions {
   width: 1000px;
@@ -99,7 +133,8 @@ select {
 .directions {
   border: 4px solid #adabab;
   padding: 20px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 3px #adabab; }
 
 #card-title {
   font-size: 25px;
@@ -110,7 +145,8 @@ select {
   list-style-type: square;
   display: flex;
   flex-direction: column;
-  align-self: center; }
+  align-self: center;
+  line-height: 23px; }
   #cards li {
     color: white; }
     #cards li ul {
@@ -127,5 +163,46 @@ select {
 
 #scores {
   list-style: none; }
+
+.loss {
+  display: flex;
+  align-self: center;
+  color: red;
+  animation: death 3s ease 0s infinite; }
+
+#win-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  #win-screen p {
+    font-size: 30px;
+    margin-bottom: 40px;
+    color: green; }
+  #win-screen button {
+    padding: 15px;
+    color: #303030;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 0;
+    border: none; }
+    #win-screen button:hover {
+      background-color: #adabab;
+      cursor: pointer; }
+    #win-screen button:focus {
+      box-shadow: none; }
+    #win-screen button:active {
+      box-shadow: none; }
+
+@keyframes death {
+  0% {
+    color: red; }
+  25% {
+    color: #303030; }
+  50% {
+    color: red; }
+  75% {
+    color: #303030; }
+  100% {
+    color: red; } }
 
 /*# sourceMappingURL=master.css.map */

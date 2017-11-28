@@ -40,7 +40,7 @@ var Player = exports.Player = function () {
     this.cards = [];
     this.infection = 0;
     this.research = 0;
-    this.interval = 10000;
+    this.interval = 20000;
     this.increase = 10;
     this.loss = false;
     this.win = false;
@@ -68,10 +68,10 @@ var Player = exports.Player = function () {
           } else if (number <= 45) {
             //Decrease Research
             this.cards.push(cards[1]);
-          } else if (number <= 75) {
+          } else if (number <= 65) {
             //Increase Research
             this.cards.push(cards[3]);
-          } else if (number <= 12.5) {
+          } else if (number <= 82.5) {
             //Increase Infection
             this.cards.push(cards[4]);
           } else {
@@ -138,10 +138,16 @@ var Player = exports.Player = function () {
         this.cards.splice(_cardToRemove, 1);
       } else if (card === "Decrease Research") {
         target.research -= 10;
+        if (target.research < 0) {
+          target.research = 0;
+        }
         var _cardToRemove2 = this.cards.indexOf("Decrease Research");
         this.cards.splice(_cardToRemove2, 1);
       } else if (card === "Infection Strength Decrease") {
         this.increase -= 10;
+        if (this.increase < 0) {
+          this.increase = 0;
+        }
         var _cardToRemove3 = this.cards.indexOf("Infection Strength Decrease");
         this.cards.splice(_cardToRemove3, 1);
       } else if (card === "Temporary Cure") {
@@ -158,6 +164,9 @@ var Player = exports.Player = function () {
         this.cards.splice(_cardToRemove6, 1);
       } else if (card === "Decrease Infection") {
         this.infection -= 10;
+        if (this.infection < 0) {
+          this.infection = 0;
+        }
         var _cardToRemove7 = this.cards.indexOf("Decrease Infection");
         this.cards.splice(_cardToRemove7, 1);
       }
@@ -177,12 +186,15 @@ var Player = exports.Player = function () {
 }();
 
 },{}],2:[function(require,module,exports){
-"use strict";
+'use strict';
 
-var _Pandemic = require("./../js/Pandemic.js");
+var _Pandemic = require('./../js/Pandemic.js');
 
 $(document).ready(function () {
+  var squishy = new Audio('/audio/Squishy.mp3');
+  var tada = new Audio('/audio/Tada.mp3');
   var counter = 0;
+  $("#win-screen").hide();
   $(".play").hide();
   $(".option-play").hide();
   var game = new _Pandemic.Game();
@@ -205,27 +217,34 @@ $(document).ready(function () {
 
     $("#select").empty();
     game.players[game.turn].cards.forEach(function (card) {
-      $("#select").append("<option>" + card + "</option>");
+      $("#select").append('<option>' + card + '</option>');
     });
     game.players.forEach(function (player) {
-      $("#scores").append("<li>Player " + player.id + " Infection: " + player.infection + " Research: " + player.research + " Infection Rate: " + player.increase);
+      $("#scores").append('<li>Player ' + player.id + ' Infection: ' + player.infection + ' Research: ' + player.research + ' Infection Rate: ' + player.increase);
     });
     game.players.forEach(function (player) {
-      $("#target").append("<option>" + player.id + "</option>");
+      $("#target").append('<option>' + player.id + '</option>');
     });
-    $("#timer").text("Turn Over In " + (20 - counter) + " Seconds");
-    $("#output").text("Player " + game.players[game.turn].id + "'s Turn");
+    $("#timer").text('Turn Over In ' + (20 - counter) + ' Seconds');
+    $("#output").text('Player ' + game.players[game.turn].id + '\'s Turn');
 
     var theinterval = setInterval(function () {
       document.getElementById("card").disabled = false;
       for (var i = 0; i < game.players.length; i++) {
         if (game.players[i].win) {
-          alert("Player " + game.players[i].id + " Wins");
+          $(".instructions").hide();
+          $(".play").hide();
+          $("#win-screen").show();
+          $("#win").text('Player ' + game.players[i].id + ' Wins');
+          tada.play();
           clearInterval(theinterval);
-          location.reload();
         }
         if (game.players[i].loss) {
-          alert("Player " + game.players[i].id + " is out");
+          $(".loss").text('Player ' + game.players[i].id + ' Is Dead!!!');
+          squishy.play();
+          setTimeout(function () {
+            $(".loss").empty();
+          }, 3000);
           game.players.splice(i, 1);
           if (game.turn >= game.players.length) {
             game.turn = 0;
@@ -233,9 +252,12 @@ $(document).ready(function () {
         }
       }
       if (game.players.length <= 1) {
-        alert("Player " + game.players[0].id + " Wins");
+        $(".instructions").hide();
+        $(".play").hide();
+        $("#win-screen").show();
+        $("#win").text('Player ' + game.players[0].id + ' Wins');
+        tada.play();
         clearInterval(theinterval);
-        location.reload();
       }
       if (counter >= 20) {
         game.players[game.turn].turn = false;
@@ -244,32 +266,40 @@ $(document).ready(function () {
           counter = 0;
           $("#select").empty();
           game.players[game.turn].cards.forEach(function (card) {
-            $("#select").append("<option>" + card + "</option>");
+            $("#select").append('<option>' + card + '</option>');
           });
           $("#target").empty();
           game.players.forEach(function (player) {
-            $("#target").append("<option>" + player.id + "</option>");
+            $("#target").append('<option>' + player.id + '</option>');
           });
+          document.getElementById("card").disabled = true;
+          setTimeout(function () {
+            document.getElementById("card").disabled = false;
+          }, 1000);
         } else {
           game.turn++;
           counter = 0;
           $("#select").empty();
           game.players[game.turn].cards.forEach(function (card) {
-            $("#select").append("<option>" + card + "</option>");
+            $("#select").append('<option>' + card + '</option>');
           });
           $("#target").empty();
           game.players.forEach(function (player) {
-            $("#target").append("<option>" + player.id + "</option>");
+            $("#target").append('<option>' + player.id + '</option>');
           });
+          document.getElementById("card").disabled = true;
+          setTimeout(function () {
+            document.getElementById("card").disabled = false;
+          }, 500);
         }
         game.players[game.turn].turn = true;
       }
       $("#scores").empty();
       game.players.forEach(function (player) {
-        $("#scores").append("<li>Player " + player.id + " Infection: " + player.infection + " Research: " + player.research + " Infection Rate: " + player.increase);
+        $("#scores").append('<li>Player ' + player.id + ' Infection: ' + player.infection + ' Research: ' + player.research + ' Infection Rate: ' + player.increase);
       });
-      $("#output").text("Player " + game.players[game.turn].id + "'s Turn");
-      $("#timer").text("Turn Over In " + (20 - counter) + " Seconds");
+      $("#output").text('Player ' + game.players[game.turn].id + '\'s Turn');
+      $("#timer").text('Turn Over In ' + (20 - counter) + ' Seconds');
       counter++;
     }, 1000);
   });
@@ -287,18 +317,21 @@ $(document).ready(function () {
     game.players[game.turn].playCard(card, target);
     $("#select").empty();
     game.players[game.turn].cards.forEach(function (card) {
-      $("#select").append("<option>" + card + "</option>");
+      $("#select").append('<option>' + card + '</option>');
     });
     $("#target").empty();
     game.players.forEach(function (player) {
-      $("#target").append("<option>" + player.id + "</option>");
+      $("#target").append('<option>' + player.id + '</option>');
     });
     $("#scores").empty();
     game.players.forEach(function (player) {
-      $("#scores").append("<li>Player " + player.id + " Infection: " + player.infection + " Research: " + player.research + " Infection Rate: " + player.increase);
+      $("#scores").append('<li>Player ' + player.id + ' Infection: ' + player.infection + ' Research: ' + player.research + ' Infection Rate: ' + player.increase);
     });
-    $("#output").text("Player " + game.players[game.turn].id + "'s Turn");
-    $("#timer").text("Turn Over In " + (20 - counter) + " Seconds");
+    $("#output").text('Player ' + game.players[game.turn].id + '\'s Turn');
+    $("#timer").text('Turn Over In ' + (20 - counter) + ' Seconds');
+  });
+  $("#restart").click(function () {
+    window.location.reload(true);
   });
 });
 
