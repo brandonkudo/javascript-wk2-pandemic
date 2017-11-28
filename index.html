@@ -11,8 +11,8 @@
 
     <h1>Pandemic</h1>
     <form class="start" action="index.html" method="post">
-      <label>How many players</label>
-      <input type="number" id="amount" max="4" min="2">
+      <label>How many players?</label>
+      <input type="number" id="amount" max="4" min="2" required>
       <button type="submit" name="button">Enter</button>
     </form>
     <div class="play">
@@ -25,15 +25,76 @@
 
       </div>
       <div class="option-play">
+        <label for="select">Cards</label>
         <select id="select">
 
         </select>
+        <label for="target">Target</label>
         <select id="target">
 
         </select>
-        <button type="button" name="button" id="card">Play Card</button>
+        <button type="button" name="button" id="card" disabled>Play Card</button>
       </div>
-      <img src="https://i.ytimg.com/vi/u0py1ECA2eM/maxresdefault.jpg" alt="The love of my life" width="300px" height="150px">
+
+    </div>
+    <div class="instructions">
+      <div class="directions">
+        <p>There is a global pandemic! Everyone is infected! Fight to survive or find a cure!</p>
+        <p>2-4 players play cards to either find a cure or sabotage others.</p><br>
+        <p>Increase your research your research to find a cure, and decrease your infection to stay alive.</p><br>
+        <p>Decrease others research while increasing their infection to try and kill them faster.</p><br>
+        <p>Each turn is 20 seconds and after every 10 seconds everyone's infection increases by their current infection rate.</p><br>
+        <p>To win you must get 100 or more research, or be the last one <span id="alive">alive.</span></p><br>
+        <p>If you reach 100 infection or more, you will <span id="die">die.</span></p><br>
+      </div>
+
+      <p id="card-title">Cards</p>
+      <ul id="cards">
+        <li>Increase Research:
+          <ul>
+            <li>Increase your current research by 20.</li>
+          </ul>
+        </li>
+        <li>Increase Infection:
+          <ul>
+            <li>Increase your target's infection by 10.</li>
+          </ul>
+        </li>
+        <li>Decrease Infection:
+          <ul>
+            <li>Decrease your current infection by 10.</li>
+            <li>You can go negative but this does not count as a cure.</li>
+          </ul>
+        </li>
+        <li>Decrease Research:
+          <ul>
+            <li>Decrease your target's research by 10.</li>
+            <li>You can go negative.</li>
+          </ul>
+        </li>
+        <li>Infection Strength Increase:
+          <ul>
+            <li>Increase your target's rate of infection per turn by 10.</li>
+          </ul>
+        </li>
+        <li>Infection Strength Decrease:
+          <ul>
+            <li>Decrease your rate of infection per turn by 10.</li>
+            <li>You can go negative but this does not count as a cure.</li>
+          </ul>
+        </li>
+        <li>Reset Infection:
+          <ul>
+            <li>Reset rate of infection on target back to 10.</li>
+            <li>You can target yourself.</li>
+          </ul>
+        </li>
+        <li>Temporary Cure:
+          <ul>
+            <li>Reset your total infection to 0.</li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </body>

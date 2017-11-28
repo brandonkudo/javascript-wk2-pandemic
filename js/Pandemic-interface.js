@@ -13,6 +13,7 @@ $(document).ready(function(){
   });
   $("#button").click(function(){
     $(".option-play").show();
+    $(".directions").hide();
     $("#button").hide();
     var losscheck = false;
     game.players.forEach(function(player){
@@ -22,7 +23,6 @@ $(document).ready(function(){
     game.players[game.turn].turn = true;
 
     $("#select").empty();
-    $("#card").hide();
     game.players[game.turn].cards.forEach(function(card){
       $("#select").append(`<option>${card}</option>`);
     });
@@ -33,9 +33,10 @@ $(document).ready(function(){
       $("#target").append(`<option>${player.id}</option>`);
     });
     $("#timer").text(`Turn Over In ${20 - counter} Seconds`);
+    $("#output").text(`Player ${game.players[game.turn].id}'s Turn`);
 
     let theinterval = setInterval(() => {
-      $("#card").show();
+      document.getElementById("card").disabled = false;
       for (var i = 0; i < game.players.length; i++) {
         if(game.players[i].win) {
           alert(`Player ${game.players[i].id} Wins`);
