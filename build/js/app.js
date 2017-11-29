@@ -49,7 +49,7 @@ var Player = exports.Player = function () {
   _createClass(Player, [{
     key: "dealCards",
     value: function dealCards(yes) {
-      var cards = ["Infection Strength Increase", "Decrease Research", "Infection Strength Decrease", "Increase Research", "Increase Infection", "Temporary Cure", "Reset Infection", "Decrease Infection"];
+      var cards = ["Infection Strength Increase", "Decrease Research", "Infection Strength Decrease", "Increase Research", "Increase Infection", "Temporary Cure", "Reset Infection Rate", "Decrease Infection"];
       if (yes != true) {
         for (var i = 0; i < 5; i++) {
           var number = Math.floor(Math.random() * 100);
@@ -57,7 +57,7 @@ var Player = exports.Player = function () {
             //Temporary Cure
             this.cards.push(cards[5]);
           } else if (number <= 15) {
-            //Reset Infection
+            //Reset Infection Rate
             this.cards.push(cards[6]);
           } else if (number <= 25) {
             //Strength Increase
@@ -85,7 +85,7 @@ var Player = exports.Player = function () {
           //Temporary Cure
           this.cards.push(cards[5]);
         } else if (_number <= 15) {
-          //Reset Infection
+          //Reset Infection Rate
           this.cards.push(cards[6]);
         } else if (_number <= 25) {
           //Strength Increase
@@ -134,6 +134,9 @@ var Player = exports.Player = function () {
         this.cards.splice(cardToRemove, 1);
       } else if (card === "Increase Infection") {
         target.infection += 10;
+        if (target.infection >= 100) {
+          target.loss = true;
+        }
         var _cardToRemove = this.cards.indexOf("Increase Infection");
         this.cards.splice(_cardToRemove, 1);
       } else if (card === "Decrease Research") {
@@ -158,9 +161,9 @@ var Player = exports.Player = function () {
         this.researchIncrease();
         var _cardToRemove5 = this.cards.indexOf("Increase Research");
         this.cards.splice(_cardToRemove5, 1);
-      } else if (card === "Reset Infection") {
+      } else if (card === "Reset Infection Rate") {
         target.increase = 10;
-        var _cardToRemove6 = this.cards.indexOf("Reset Infection");
+        var _cardToRemove6 = this.cards.indexOf("Reset Infection Rate");
         this.cards.splice(_cardToRemove6, 1);
       } else if (card === "Decrease Infection") {
         this.infection -= 10;
@@ -290,7 +293,7 @@ $(document).ready(function () {
           document.getElementById("card").disabled = true;
           setTimeout(function () {
             document.getElementById("card").disabled = false;
-          }, 500);
+          }, 1000);
         }
         game.players[game.turn].turn = true;
       }
@@ -304,6 +307,7 @@ $(document).ready(function () {
     }, 1000);
   });
   $("#card").click(function () {
+    document.getElementById("card").disabled = true;
     var card = $("#select").find(":selected").val();
     var choice = parseInt($("#target").find(":selected").val());
     var target = "";

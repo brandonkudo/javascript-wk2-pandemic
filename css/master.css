@@ -35,8 +35,6 @@ form {
       cursor: pointer; }
     form button:focus {
       box-shadow: none; }
-    form button:active {
-      box-shadow: none; }
 
 label {
   margin-bottom: 10px; }
@@ -52,8 +50,6 @@ input {
   font-size: 20px;
   color: white; }
   input:focus {
-    box-shadow: none; }
-  input:active {
     box-shadow: none; }
 
 .play {
@@ -82,8 +78,6 @@ input {
     cursor: pointer; }
   #button:focus {
     box-shadow: none; }
-  #button:active {
-    box-shadow: none; }
 
 select {
   width: 100px;
@@ -94,10 +88,9 @@ select {
   border-radius: 0; }
   select:hover {
     cursor: pointer;
-    background-color: white; }
+    background-color: white;
+    text-align: center; }
   select:focus {
-    box-shadow: none; }
-  select:active {
     box-shadow: none; }
 
 #select {
@@ -113,8 +106,6 @@ select {
     background-color: white;
     cursor: pointer; }
   #card:focus {
-    box-shadow: none; }
-  #card:active {
     box-shadow: none; }
 
 .instructions {
@@ -179,7 +170,7 @@ select {
     margin-bottom: 40px;
     color: green; }
   #win-screen button {
-    padding: 15px;
+    padding: 25px;
     color: #303030;
     font-size: 20px;
     background-color: white;
@@ -189,8 +180,6 @@ select {
       background-color: #adabab;
       cursor: pointer; }
     #win-screen button:focus {
-      box-shadow: none; }
-    #win-screen button:active {
       box-shadow: none; }
 
 @keyframes death {

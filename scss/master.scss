@@ -42,9 +42,7 @@ form {
     &:focus {
       box-shadow: none;
     }
-    &:active {
-      box-shadow: none;
-    }
+
   }
 }
 
@@ -65,9 +63,7 @@ input {
   &:focus {
     box-shadow: none;
   }
-  &:active {
-    box-shadow: none;
-  }
+
 }
 
 .play {
@@ -100,9 +96,7 @@ input {
   &:focus {
     box-shadow: none;
   }
-  &:active {
-    box-shadow: none;
-  }
+
 }
 
 select {
@@ -115,11 +109,9 @@ select {
   &:hover {
     cursor: pointer;
     background-color: white;
+    text-align: center;
   }
   &:focus {
-    box-shadow: none;
-  }
-  &:active {
     box-shadow: none;
   }
 }
@@ -139,9 +131,6 @@ select {
     cursor: pointer;
   }
   &:focus {
-    box-shadow: none;
-  }
-  &:active {
     box-shadow: none;
   }
 }
@@ -221,7 +210,7 @@ select {
     color: green;
   }
   button {
-    padding: 15px;
+    padding: 25px;
     color: #303030;
     font-size: 20px;
     background-color: white;
@@ -234,9 +223,7 @@ select {
     &:focus {
       box-shadow: none;
     }
-    &:active {
-      box-shadow: none;
-    }
+
   }
 }
 

@@ -100,7 +100,7 @@ $(document).ready(function(){
           document.getElementById("card").disabled = true;
           setTimeout(() => {
             document.getElementById("card").disabled = false;
-          }, 500);
+          }, 1000);
         }
         game.players[game.turn].turn = true;
       }
@@ -114,6 +114,7 @@ $(document).ready(function(){
     }, 1000);
   });
   $("#card").click(function(){
+    document.getElementById("card").disabled = true;
     let card = $("#select").find(":selected").val();
     let choice = parseInt($("#target").find(":selected").val());
     let target = "";

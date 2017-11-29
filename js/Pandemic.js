@@ -26,7 +26,7 @@ export class Player {
     this.win = false;
   }
   dealCards(yes){
-    const cards = ["Infection Strength Increase", "Decrease Research", "Infection Strength Decrease",  "Increase Research", "Increase Infection", "Temporary Cure", "Reset Infection", "Decrease Infection"];
+    const cards = ["Infection Strength Increase", "Decrease Research", "Infection Strength Decrease",  "Increase Research", "Increase Infection", "Temporary Cure", "Reset Infection Rate", "Decrease Infection"];
     if(yes != true) {
       for (var i = 0; i < 5; i++) {
         let number = Math.floor(Math.random() * 100);
@@ -34,7 +34,7 @@ export class Player {
           //Temporary Cure
           this.cards.push(cards[5]);
         } else if(number <= 15) {
-          //Reset Infection
+          //Reset Infection Rate
           this.cards.push(cards[6]);
         } else if(number <= 25) {
           //Strength Increase
@@ -62,7 +62,7 @@ export class Player {
         //Temporary Cure
         this.cards.push(cards[5]);
       } else if(number <= 15) {
-        //Reset Infection
+        //Reset Infection Rate
         this.cards.push(cards[6]);
       } else if(number <= 25) {
         //Strength Increase
@@ -106,6 +106,9 @@ export class Player {
       this.cards.splice(cardToRemove, 1);
     } else if(card === "Increase Infection") {
       target.infection += 10;
+      if(target.infection >= 100) {
+        target.loss = true;
+      }
       let cardToRemove = this.cards.indexOf("Increase Infection");
       this.cards.splice(cardToRemove, 1);
     } else if(card === "Decrease Research") {
@@ -130,9 +133,9 @@ export class Player {
       this.researchIncrease();
       let cardToRemove = this.cards.indexOf("Increase Research");
       this.cards.splice(cardToRemove, 1);
-    } else if(card === "Reset Infection") {
+    } else if(card === "Reset Infection Rate") {
       target.increase = 10;
-      let cardToRemove = this.cards.indexOf("Reset Infection");
+      let cardToRemove = this.cards.indexOf("Reset Infection Rate");
       this.cards.splice(cardToRemove, 1);
     } else if(card === "Decrease Infection") {
       this.infection -= 10;
