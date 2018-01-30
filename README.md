@@ -1,8 +1,8 @@
 # Pandemic
-##### by Adam Titus
+##### by Adam Titus & Brandon Kudo
 
 ### Description
-
+A web program using HTML, Javascript and CSS using the setTimer and setInterval functions.
 
 ### Installation Instructions
 * Clone to desktop
@@ -21,10 +21,12 @@
 
 
 ### Contact Me
-You can reach me at adamtitus76@gmail.com or connect with me on [linkedin](www.linkedin.com/in/adam-titus-06740b149).
+You can reach us at adamtitus76@gmail.com or brandonkudo@gmail.com, or connect with us on [linkedin](www.linkedin.com/in/adam-titus-06740b149)
+[linkedin](www.linkedin.com/in/brandonkudo)
+
 #### Legal
 This is licensed under the MIT license
 
-Copyright (c) 2017 Adam Titus All Rights Reserved.
+Copyright (c) 2017 Adam Titus & Brandon Kudo All Rights Reserved.
 
 _If you find a way to monetize this please contact the author_
